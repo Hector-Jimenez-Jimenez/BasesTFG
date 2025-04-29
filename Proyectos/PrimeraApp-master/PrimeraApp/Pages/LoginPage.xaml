@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PrimeraApp.Viewmodels"
+             x:Class="PrimeraApp.Pages.LoginPage"
+             Title="LoginPage">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               Source="dotnet_bot.png"
+               Aspect="AspectFit"/>
+
+        <Entry Placeholder="Usuario"
+               Text="{Binding Username}"
+               Grid.Row="1"/>
+
+        <Entry Placeholder="Contraseña"
+               Text="{Binding Password}"
+               IsPassword="True"
+               Grid.Row="2" />
+
+        <Button Text="Inicia sesión"
+                Grid.Row="3"
+                Command="{Binding ClickedButtonCommand}"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:PrimeraApp.Models"
+             xmlns:vm="clr-namespace:PrimeraApp.Viewmodels"
+             x:Class="PrimeraApp.Pages.ListaCochePage"
+             Title="ListaCochePage">
+    <ContentPage.BindingContext>
+        <vm:ListaCocheViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <VerticalStackLayout>
+            <Entry Placeholder="Matrícula" Text="{Binding Matricula}"/>
+            <Entry Placeholder="Marca" Text="{Binding Marca}" />
+            <Button Text="Añadir" Command="{Binding AddCommand}"/>
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row ="1" ItemsSource="{Binding Coches}">
+            <CollectionView.ItemTemplate >
+                <DataTemplate>
+                    <Frame>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding Matricula}"/>
+                            <Label Grid.Row ="1" Text="{Binding Marca}"/>
+
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ListaCocheViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
